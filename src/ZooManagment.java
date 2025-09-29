@@ -1,20 +1,40 @@
 public class ZooManagment {
-    public static void main (String[] args) {
-        // Création d’animaux avec constructeur
+    public static void main(String[] args) {
+        // Création du zoo
+        Zoo myZoo = new Zoo("Parc Zoologique", "Tunis");
+
+        // Création d’animaux
         Animal lion = new Animal("Félin", "Simba", 5, true);
         Animal elephant = new Animal("Éléphantidé", "Dumbo", 10, true);
+        Animal crocodile = new Animal("Reptile", "Croc", 7, false);
+        Animal lion2 = new Animal("Félin", "Simba", 6, true); // même nom → considéré comme doublon
 
-        // Affichage direct (grâce à toString)
-        System.out.println(lion);
-        System.out.println(elephant);
+        //  Test ajout
+        myZoo.addAnimal(lion);
+        myZoo.addAnimal(elephant);
+        myZoo.addAnimal(crocodile);
+        myZoo.addAnimal(lion2); // doublon → refusé
 
-        // Création d’un zoo avec constructeur
-        Zoo myZoo = new Zoo("Parc Zoologique", "Tunis", 20);
+        //  Afficher les animaux
+        System.out.println("\n--- Animaux du zoo ---");
+        myZoo.displayAnimals();
 
-        // Affichage avec displayZoo()
-        myZoo.displayZoo();
+        //  Test recherche
+        System.out.println("\nRecherche de Simba : index = " + myZoo.searchAnimal(lion));
+        System.out.println("Recherche d’un animal inexistant : index = " + myZoo.searchAnimal(new Animal("Oiseau","Rio",2,true)));
 
-        // Affichage direct avec toString()
-        System.out.println(myZoo);
+        //  Test suppression
+        System.out.println("\nSuppression de Croc : " + myZoo.removeAnimal(crocodile));
+        myZoo.displayAnimals();
+
+        //  Test zoo plein
+        System.out.println("\nLe zoo est-il plein ? " + myZoo.isZooFull());
+
+        // Comparaison entre deux zoos
+        Zoo zoo2 = new Zoo("Zoo Safari", "Sousse");
+        zoo2.addAnimal(new Animal("Oiseau", "Rio", 2, true));
+
+        Zoo biggerZoo = Zoo.comparerZoo(myZoo, zoo2);
+        System.out.println("\nLe zoo avec le plus d’animaux est : " + biggerZoo.name);
     }
 }
