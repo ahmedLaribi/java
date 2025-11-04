@@ -2,20 +2,34 @@ package tn.esprit.gestionzoo.entities;
 
 public class Penguin extends Aquatic {
     private float swimmingDepth;
-    public Penguin(String family, String name, int age, boolean isMammal, String habitat,float swimmingDepth) {
+
+    // Constructeur COMPLET
+    public Penguin(String family, String name, int age, boolean isMammal, String habitat, float swimmingDepth) {
         super(family, name, age, isMammal, habitat);
         this.swimmingDepth = swimmingDepth;
+    }
 
+    // Constructeur SIMPLIFIÉ
+    public Penguin(String name, int age, float swimmingDepth) {
+        super("Oiseau marin", name, age, true, "Océan Antarctique");
+        this.swimmingDepth = swimmingDepth;
+    }
+
+    public float getSwimmingDepth() {
+        return swimmingDepth;
+    }
+
+    public void setSwimmingDepth(float swimmingDepth) {
+        this.swimmingDepth = swimmingDepth;
+    }
+
+    @Override
+    public void swim() {
+        System.out.println(getName() + " nage sous l'eau avec agilité jusqu'à " + swimmingDepth + " mètres de profondeur !");
     }
 
     @Override
     public String toString() {
-        return super.toString() + "/n swimmingDepth=" + swimmingDepth;
-    }
-    public float getSwimmingDepth() {
-        return swimmingDepth;
-    }
-    public void setSwimmingDepth(float swimmingDepth) {
-        this.swimmingDepth = swimmingDepth;
+        return "Pingouin - " + super.toString() + ", Profondeur=" + swimmingDepth + "m";
     }
 }
